@@ -4,10 +4,12 @@
 const todoInput = document.querySelector('.todo-input');
 const todoButton = document.querySelector('.todo-button');
 const todoList = document.querySelector('.todo-list');
+const filterOption = document.querySelector('.fiter-todo');
 
 //LISTA DE EVENTOS
 todoButton.addEventListener('click',addTodo);
-todoList.addEventListener('click',deleteCheck)
+todoList.addEventListener('click',deleteCheck);
+filterOption.addEventListener('click',filterTodo)
 
 
 //FUNÇÕES
@@ -53,9 +55,23 @@ function deleteCheck(event){
     // delete todo
     if (item.classList[0] === "trash-btn"){
         const todo = item.parentElement;
-        todo.remove();
+    //    animacao ao deletar
+        todo.classList.add("fall");
+        todo.addEventListener('transitionend',()=>{
+            todo.remove()            
+        });
+      
     }
 
-    
+    // Marcar check
+    if(item.classList[0] === "complete-btn"){
+        const todo = item.parentElement;
+        todo.classList.toggle('completed');
+    }
+
+
 }
+
+    
+
 
